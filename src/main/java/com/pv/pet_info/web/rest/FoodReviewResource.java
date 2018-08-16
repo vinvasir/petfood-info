@@ -2,7 +2,9 @@ package com.pv.pet_info.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pv.pet_info.domain.FoodReview;
+import com.pv.pet_info.domain.User;
 import com.pv.pet_info.service.FoodReviewService;
+import com.pv.pet_info.service.UserService;
 import com.pv.pet_info.web.rest.errors.BadRequestAlertException;
 import com.pv.pet_info.web.rest.util.HeaderUtil;
 import com.pv.pet_info.web.rest.util.PaginationUtil;
@@ -21,9 +23,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing FoodReview.
@@ -37,9 +36,11 @@ public class FoodReviewResource {
     private static final String ENTITY_NAME = "foodReview";
 
     private final FoodReviewService foodReviewService;
+    private final UserService userService;
 
-    public FoodReviewResource(FoodReviewService foodReviewService) {
+    public FoodReviewResource(FoodReviewService foodReviewService, UserService userService) {
         this.foodReviewService = foodReviewService;
+        this.userService = userService;
     }
 
     /**
@@ -56,6 +57,8 @@ public class FoodReviewResource {
         if (foodReview.getId() != null) {
             throw new BadRequestAlertException("A new foodReview cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        User currentUser = userService.getUserWithAuthorities().get();
+        foodReview.setAuthor(currentUser);
         FoodReview result = foodReviewService.save(foodReview);
         return ResponseEntity.created(new URI("/api/food-reviews/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

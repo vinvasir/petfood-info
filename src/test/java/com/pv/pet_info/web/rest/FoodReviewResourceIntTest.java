@@ -91,7 +91,7 @@ public class FoodReviewResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final FoodReviewResource foodReviewResource = new FoodReviewResource(foodReviewService);
+        final FoodReviewResource foodReviewResource = new FoodReviewResource(foodReviewService, userService);
         this.restFoodReviewMockMvc = MockMvcBuilders.standaloneSetup(foodReviewResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
