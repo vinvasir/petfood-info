@@ -9,18 +9,30 @@
                     <input type="text" class="form-control" id="id" name="id"
                         [(ngModel)]="foodReview.id" readonly />
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" for="field_title">Title</label>
+                    <label class="form-control-label" for="field_food">What food are you reviewing?</label>
+                    <select class="form-control" id="field_food" name="food" [(ngModel)]="foodReview.food" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="foodOption.id === foodReview.food?.id ? foodReview.food : foodOption" *ngFor="let foodOption of foods; trackBy: trackFoodById">{{foodOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pet">What pet is this review for?</label>
+                    <select class="form-control" id="field_pet" name="pet" [(ngModel)]="foodReview.pet" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="petOption.id === foodReview.pet?.id ? foodReview.pet : petOption" *ngFor="let petOption of pets; trackBy: trackPetById">{{petOption.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_title">Summarize your feelings about this food</label>
                     <input type="text" class="form-control" name="title" id="field_title"
                         [(ngModel)]="foodReview.title" />
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" for="field_body">Body</label>
-                    <input type="text" class="form-control" name="body" id="field_body"
-                        [(ngModel)]="foodReview.body" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_rating">Rating</label>
+                    <label class="form-control-label" for="field_rating">On a scale of 1 to 5, how awesome or sucky is this food for this pet?</label>
                     <select class="form-control" name="rating" [(ngModel)]="foodReview.rating" id="field_rating" >
                         <option value="ONE">ONE</option>
                         <option value="TWO">TWO</option>
@@ -31,25 +43,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_author">Author</label>
-                    <select class="form-control" id="field_author" name="author" [(ngModel)]="foodReview.author" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === foodReview.author?.id ? foodReview.author : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_food">Food</label>
-                    <select class="form-control" id="field_food" name="food" [(ngModel)]="foodReview.food" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="foodOption.id === foodReview.food?.id ? foodReview.food : foodOption" *ngFor="let foodOption of foods; trackBy: trackFoodById">{{foodOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_pet">Pet</label>
-                    <select class="form-control" id="field_pet" name="pet" [(ngModel)]="foodReview.pet" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="petOption.id === foodReview.pet?.id ? foodReview.pet : petOption" *ngFor="let petOption of pets; trackBy: trackPetById">{{petOption.id}}</option>
-                    </select>
+                    <label class="form-control-label" for="field_body">Why do you feel this way about this food?</label>
+                    <textarea rows="4" class="form-control" name="body" id="field_body"
+                              [(ngModel)]="foodReview.body"></textarea>
                 </div>
             </div>
             <div>
