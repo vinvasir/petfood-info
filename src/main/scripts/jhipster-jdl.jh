@@ -1,0 +1,32 @@
+
+entity Pet {
+	name String
+    description String
+    slug String
+}
+
+entity Food {
+	name String
+    description String
+}
+
+entity FoodReview {
+    title String
+    body String
+    rating FoodRating
+}
+
+enum FoodRating {
+    ONE, TWO, THREE, FOUR, FIVE
+}
+
+relationship ManyToOne {
+	FoodReview{author} to User,
+    FoodReview{food} to Food{review},
+    FoodReview{pet} to Pet{foodReview}
+}
+
+service all with serviceImpl
+
+paginate Food, FoodReview with pagination
+paginate Pet with infinite-scroll

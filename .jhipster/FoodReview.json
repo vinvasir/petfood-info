@@ -1,0 +1,47 @@
+{
+    "name": "FoodReview",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "body",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rating",
+            "fieldType": "FoodRating",
+            "fieldValues": "ONE,TWO,THREE,FOUR,FIVE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "author",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "food",
+            "otherEntityName": "food",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pet",
+            "otherEntityName": "pet",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180816011738",
+    "entityTableName": "food_review",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

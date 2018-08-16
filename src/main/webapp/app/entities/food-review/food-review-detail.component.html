@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="foodReview">
+            <h2><span>Food Review</span> {{foodReview.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{foodReview.title}}</span>
+                </dd>
+                <dt><span>Body</span></dt>
+                <dd>
+                    <span>{{foodReview.body}}</span>
+                </dd>
+                <dt><span>Rating</span></dt>
+                <dd>
+                    <span>{{foodReview.rating}}</span>
+                </dd>
+                <dt><span>Author</span></dt>
+                <dd>
+                    {{foodReview.author?.id}}
+                </dd>
+                <dt><span>Food</span></dt>
+                <dd>
+                    <div *ngIf="foodReview.food">
+                        <a [routerLink]="['/food', foodReview.food?.id, 'view']">{{foodReview.food?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Pet</span></dt>
+                <dd>
+                    <div *ngIf="foodReview.pet">
+                        <a [routerLink]="['/pet', foodReview.pet?.id, 'view']">{{foodReview.pet?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/food-review', foodReview.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
