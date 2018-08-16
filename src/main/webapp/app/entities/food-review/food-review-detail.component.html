@@ -5,6 +5,18 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span>Food</span></dt>
+                <dd>
+                    <div *ngIf="foodReview.food">
+                        <a [routerLink]="['/food', foodReview.food?.id, 'view']">{{foodReview.food?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span>Pet</span></dt>
+                <dd>
+                    <div *ngIf="foodReview.pet">
+                        <a [routerLink]="['/pet', foodReview.pet?.id, 'view']">{{foodReview.pet?.name}}</a>
+                    </div>
+                </dd>
                 <dt><span>Title</span></dt>
                 <dd>
                     <span>{{foodReview.title}}</span>
@@ -19,19 +31,7 @@
                 </dd>
                 <dt><span>Author</span></dt>
                 <dd>
-                    {{foodReview.author?.id}}
-                </dd>
-                <dt><span>Food</span></dt>
-                <dd>
-                    <div *ngIf="foodReview.food">
-                        <a [routerLink]="['/food', foodReview.food?.id, 'view']">{{foodReview.food?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span>Pet</span></dt>
-                <dd>
-                    <div *ngIf="foodReview.pet">
-                        <a [routerLink]="['/pet', foodReview.pet?.id, 'view']">{{foodReview.pet?.id}}</a>
-                    </div>
+                    {{foodReview.author?.firstName}} {{foodReview.author?.lastName}}
                 </dd>
             </dl>
 
