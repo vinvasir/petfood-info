@@ -30,24 +30,19 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="title"><span>Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="body"><span>Body</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="rating"><span>Rating</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="author.id"><span>Author</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="food.id"><span>Food</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="pet.id"><span>Pet</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="title"><span>Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="author.id"><span>Author</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="rating"><span>Rating</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="body"><span>Body</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let foodReview of foodReviews ;trackBy: trackId">
                 <td><a [routerLink]="['/food-review', foodReview.id, 'view' ]">{{foodReview.id}}</a></td>
-                <td>{{foodReview.title}}</td>
-                <td>{{foodReview.body}}</td>
-                <td>{{foodReview.rating}}</td>
-                <td>
-                    {{foodReview.author?.firstName}} {{foodReview.author?.lastName}}
-                </td>
                 <td>
                     <div *ngIf="foodReview.food">
                         <a [routerLink]="['../food', foodReview.food?.id, 'view' ]" >{{foodReview.food?.name}}</a>
@@ -58,6 +53,12 @@
                         <a [routerLink]="['../pet', foodReview.pet?.id, 'view' ]" >{{foodReview.pet?.name}}</a>
                     </div>
                 </td>
+                <td>{{foodReview.title}}</td>
+                <td>
+                    by {{foodReview.author?.firstName}} {{foodReview.author?.lastName}}
+                </td>
+                <td>{{foodReview.rating}}</td>
+                <td>{{foodReview.body}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
