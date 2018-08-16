@@ -46,16 +46,16 @@
                 <td>{{foodReview.body}}</td>
                 <td>{{foodReview.rating}}</td>
                 <td>
-                    {{foodReview.author?.id}}
+                    {{foodReview.author?.firstName}} {{foodReview.author?.lastName}}
                 </td>
                 <td>
                     <div *ngIf="foodReview.food">
-                        <a [routerLink]="['../food', foodReview.food?.id, 'view' ]" >{{foodReview.food?.id}}</a>
+                        <a [routerLink]="['../food', foodReview.food?.id, 'view' ]" >{{foodReview.food?.name}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="foodReview.pet">
-                        <a [routerLink]="['../pet', foodReview.pet?.id, 'view' ]" >{{foodReview.pet?.id}}</a>
+                        <a [routerLink]="['../pet', foodReview.pet?.id, 'view' ]" >{{foodReview.pet?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">
