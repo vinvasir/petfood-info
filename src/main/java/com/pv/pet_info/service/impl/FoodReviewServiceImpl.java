@@ -43,7 +43,8 @@ public class FoodReviewServiceImpl implements FoodReviewService {
      */
     @Override
     public FoodReview save(FoodReview foodReview) {
-        log.debug("Request to save FoodReview : {}", foodReview);        FoodReview result = foodReviewRepository.save(foodReview);
+        log.debug("Request to save FoodReview : {}", foodReview);
+        FoodReview result = foodReviewRepository.save(foodReview);
         foodReviewSearchRepository.save(result);
         return result;
     }

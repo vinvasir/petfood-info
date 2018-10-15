@@ -33,7 +33,7 @@ public class Food implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "food")
+    @OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<FoodReview> reviews = new HashSet<>();
 
